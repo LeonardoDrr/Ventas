@@ -106,12 +106,20 @@ function initializeProductCatalog(products) {
         filteredProducts.forEach(product => {
             const card = document.createElement('div');
             card.className = 'project-card product-card';
-            // Si product.image tiene un valor, úsalo. Si no, usa el placeholder.
-            const imageUrl = product.image ? product.image : 'images/placeholder.jpg';
+            // Ajusta la ruta de la imagen para que sea relativa al HTML, no al CSV
+            let imageUrl = 'images/placeholder.jpg';
+            if (product.image && product.image !== '') {
+                // Si la ruta ya incluye 'images/', úsala tal cual
+                if (product.image.startsWith('images/')) {
+                    imageUrl = product.image;
+                } else {
+                    imageUrl = 'images/' + product.image;
+                }
+            }
             card.innerHTML = `
                 <div class="project-image">
-                    <img src="${imageUrl}" alt="${product.title}" 
-                         onerror="this.onerror=null;this.src='images/placeholder.jpg';">
+                    <img src="../${imageUrl}" alt="${product.title}" 
+                         onerror="this.onerror=null;this.src='../images/placeholder.jpg';">
                     <!-- Insignia de Categoría (derecha) -->
                     <div class="project-type-badge">${product.category}</div> 
                     <!-- Insignia de Cantidad (izquierda) -->
