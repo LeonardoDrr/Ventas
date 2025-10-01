@@ -28,6 +28,11 @@
     box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
 }
 
+/* Estilo para mensaje de "no productos" */
+.no-products-message {
+    grid-column: 1 / -1; /* Ocupa todo el ancho de la grilla */
+    text-align: center;
+}
 /* Estilos específicos para la página de catálogo */
 .product-catalog-main {
     padding: 4rem 0;
@@ -66,7 +71,7 @@
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
     gap: 2rem;
 }
 
@@ -831,6 +836,11 @@ main {
         grid-template-columns: 1fr;
         padding: 2rem;
     }
+
+    .product-grid {
+        /* En tablets, 2 columnas se ven mejor que 3 */
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
@@ -861,6 +871,15 @@ main {
     }
     .price {
         font-size: 1.3rem;
+    }
+    .product-catalog-main {
+        padding: 2rem 0; /* Menos padding en móvil */
+    }
+    .product-filters {
+        margin-bottom: 2rem;
+    }
+    .product-grid {
+        grid-template-columns: 1fr; /* Una sola columna en móviles */
     }
     .footer-content {
         grid-template-columns: 1fr;
