@@ -1,12 +1,12 @@
 id,image,category,title,description,price,quantity
-5,accesorios1.jpg,Accesorios,Cargador USB para Manillar,"Cargador rápido con doble puerto USB, resistente al agua. Ideal para viajes largos.",25$,15
-6,chasis1.jpg,Chasis y Carenado,Sliders de Protección (Defensas),Protege el motor y el chasis de tu moto en caso de caídas. Fabricados en nylon de alta resistencia.,65$,8
-4,producto4.jpg,Eléctrico,Faro Delantero LED Ojo de Ángel,Iluminación potente y estilo agresivo con este faro LED de última generación. Bajo consumo y alta durabilidad.,55$,12
-7,electrico2.jpg,Eléctrico,Batería de Gel sin Mantenimiento,Batería de alta duración y potencia de arranque. No requiere mantenimiento y es a prueba de derrames.,45$,5
-8,filtros1.jpg,Filtros,Filtro de Aire de Alto Flujo,Mejora la respuesta del acelerador y aumenta la potencia. Lavable y reutilizable.,35$,20
-1,producto1.jpg,Frenos,Kit de Freno de Disco Delantero,Kit completo de alto rendimiento con caliper de 4 pistones y disco ventilado. Mejora la frenada y la seguridad.,120$,3
-9,llantas1.jpg,Llantas y Rines,Llanta Trasera Pista/Calle 150/60 R17,Compuesto dual para un agarre excepcional en curvas y durabilidad en rectas. Ideal para uso deportivo.,110$,9
-2,producto2.jpg,Motor,Cilindro y Pistón 200cc,Aumenta la potencia de tu motor con este kit de cilindro y pistón forjado de alta compresión.,95$,7
-3,producto3.jpg,Suspensión,Amortiguador Monoshock a Gas,Amortiguador ajustable en precarga y rebote para una conducción más estable y cómoda en cualquier terreno.,80$,4
-10,transmision1.jpg,Transmisión,Kit de Cadena Reforzada con O-Rings,Cadena dorada de alta durabilidad con piñón y corona de acero. Ideal para motos de media y alta cilindrada.,75$,10
-11,transmision2.jpg,Transmisión,Kit de Transmisión Secundaria Completo,Incluye cadena, piñón y corona. Fabricado con materiales de alta resistencia para mayor durabilidad.,85$,6
+5,images/accesorios1.jpg,Accesorios,Cargador USB para Manillar,"Cargador rápido con doble puerto USB, resistente al agua. Ideal para viajes largos.",25$,15
+6,images/chasis1.jpg,Chasis y Carenado,Sliders de Protección (Defensas),Protege el motor y el chasis de tu moto en caso de caídas. Fabricados en nylon de alta resistencia.,65$,8
+4,images/producto4.jpg,Eléctrico,Faro Delantero LED Ojo de Ángel,Iluminación potente y estilo agresivo con este faro LED de última generación. Bajo consumo y alta durabilidad.,55$,12
+7,images/electrico2.jpg,Eléctrico,Batería de Gel sin Mantenimiento,Batería de alta duración y potencia de arranque. No requiere mantenimiento y es a prueba de derrames.,45$,5
+8,images/filtros1.jpg,Filtros,Filtro de Aire de Alto Flujo,Mejora la respuesta del acelerador y aumenta la potencia. Lavable y reutilizable.,35$,20
+1,images/producto1.jpg,Frenos,Kit de Freno de Disco Delantero,Kit completo de alto rendimiento con caliper de 4 pistones y disco ventilado. Mejora la frenada y la seguridad.,120$,3
+9,images/llantas1.jpg,Llantas y Rines,Llanta Trasera Pista/Calle 150/60 R17,Compuesto dual para un agarre excepcional en curvas y durabilidad en rectas. Ideal para uso deportivo.,110$,9
+2,images/producto2.jpg,Motor,Cilindro y Pistón 200cc,Aumenta la potencia de tu motor con este kit de cilindro y pistón forjado de alta compresión.,95$,7
+3,images/producto3.jpg,Suspensión,Amortiguador Monoshock a Gas,Amortiguador ajustable en precarga y rebote para una conducción más estable y cómoda en cualquier terreno.,80$,4
+10,images/transmision1.jpg,Transmisión,Kit de Cadena Reforzada con O-Rings,Cadena dorada de alta durabilidad con piñón y corona de acero. Ideal para motos de media y alta cilindrada.,75$,10
+11,images/vestimenta1.jpg,Vestimenta,Casco Integral con Visor Antivaho,Casco certificado con diseño aerodinámico y visor antivaho. Máxima protección y comodidad para el piloto.,150$,6
