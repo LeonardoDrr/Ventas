@@ -69,7 +69,7 @@ function initializeProductCatalog(products) {
     const grid = document.getElementById('product-grid');
     const filtersContainer = document.getElementById('product-filters');
     const searchInput = document.getElementById('search-input');
-    
+
     if (!grid || !filtersContainer) return;
 
     const whatsappNumber = '+584146329982';
@@ -106,20 +106,12 @@ function initializeProductCatalog(products) {
         filteredProducts.forEach(product => {
             const card = document.createElement('div');
             card.className = 'project-card product-card';
-            // Ajusta la ruta de la imagen para que sea relativa al HTML, no al CSV
-            let imageUrl = 'images/placeholder.jpg';
-            if (product.image && product.image !== '') {
-                // Si la ruta ya incluye 'images/', úsala tal cual
-                if (product.image.startsWith('images/')) {
-                    imageUrl = product.image;
-                } else {
-                    imageUrl = 'images/' + product.image;
-                }
-            }
+            // Si product.image tiene un valor, úsalo. Si no, usa el placeholder.
+            const imageUrl = product.image ? product.image : 'images/placeholder.jpg';
             card.innerHTML = `
                 <div class="project-image">
-                    <img src="../${imageUrl}" alt="${product.title}" 
-                         onerror="this.onerror=null;this.src='../images/placeholder.jpg';">
+                    <img src="${imageUrl}" alt="${product.title}" 
+                         onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                     <!-- Insignia de Categoría (derecha) -->
                     <div class="project-type-badge">${product.category}</div> 
                     <!-- Insignia de Cantidad (izquierda) -->
