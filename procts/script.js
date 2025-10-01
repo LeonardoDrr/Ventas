@@ -105,11 +105,13 @@ function initializeProductCatalog(products) {
 
         filteredProducts.forEach(product => {
             const card = document.createElement('div');
-            card.className = 'project-card product-card'; 
+            card.className = 'project-card product-card';
+            // Si product.image tiene un valor, úsalo. Si no, usa el placeholder.
+            const imageUrl = product.image ? product.image : 'images/placeholder.jpg';
             card.innerHTML = `
                 <div class="project-image">
-                    <img src="${product.image}" alt="${product.title}" 
-                         onerror="this.onerror=null;this.src='productos/placeholder.jpg';">
+                    <img src="${imageUrl}" alt="${product.title}" 
+                         onerror="this.onerror=null;this.src='images/placeholder.jpg';">
                     <div class="project-type-badge">${product.category}</div> 
                 </div>
                 <div class="project-content">
@@ -168,4 +170,3 @@ async function main() {
 }
 
 document.addEventListener("DOMContentLoaded", main);
-
