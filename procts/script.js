@@ -109,7 +109,7 @@ function initializeProductCatalog(products) {
             card.innerHTML = `
                 <div class="project-image">
                     <img src="${product.image}" alt="${product.title}" 
-                         onerror="this.onerror=null;this.src='placeholder.jpg';">
+                         onerror="this.onerror=null;this.src='productos/placeholder.jpg';">
                     <div class="project-type-badge">${product.category}</div> 
                 </div>
                 <div class="project-content">
@@ -168,3 +168,4 @@ async function main() {
 }
 
 document.addEventListener("DOMContentLoaded", main);
+
