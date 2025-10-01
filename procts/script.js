@@ -99,7 +99,7 @@ function initializeProductCatalog(products) {
         );
 
         if (filteredProducts.length === 0) {
-            grid.innerHTML = '<p>No se encontraron productos que coincidan con tu búsqueda.</p>';
+            grid.innerHTML = '<p class="no-products-message">No se encontraron productos que coincidan con tu búsqueda.</p>';
             return;
         }
 
