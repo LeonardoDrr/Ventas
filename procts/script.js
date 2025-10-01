@@ -112,7 +112,10 @@ function initializeProductCatalog(products) {
                 <div class="project-image">
                     <img src="${imageUrl}" alt="${product.title}" 
                          onerror="this.onerror=null;this.src='images/placeholder.jpg';">
+                    <!-- Insignia de Categoría (derecha) -->
                     <div class="project-type-badge">${product.category}</div> 
+                    <!-- Insignia de Cantidad (izquierda) -->
+                    <div class="product-quantity-badge">Stock: ${product.quantity || 0}</div>
                 </div>
                 <div class="project-content">
                     <h3>${product.title}</h3>
@@ -149,8 +152,15 @@ function initializeProductCatalog(products) {
             const product = products.find(p => p.id == productId);
 
             if (product) {
-                const message = `¡Hola! Estoy interesado en el producto: *${product.title}* (Precio: ${product.price}). ¿Podrían darme más información sobre el pago y la entrega?`;
+                // Mensaje pre-escrito mejorado para WhatsApp
+                const message = `¡Hola! Estoy interesado en reservar el siguiente producto:\n\n` +
+                              `*Producto:* ${product.title}\n` +
+                              `*ID de Referencia:* ${product.id}\n` +
+                              `*Precio:* ${product.price}\n\n` +
+                              `Me gustaría reservar [indicar cantidad aquí] unidad(es).\n\n` +
+                              `Por favor, confírmenme la disponibilidad y los pasos a seguir. ¡Gracias!`;
                 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                
                 window.open(whatsappUrl, '_blank');
             }
         }
