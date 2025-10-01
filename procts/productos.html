@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos - Moto Repuestos Pro</title>
+    <!-- Estilos Globales -->
+    <link rel="stylesheet" href="../styles.css"> 
+    <!-- Estilos Específicos del Catálogo -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Fuente Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Moderno (Reutilizado) -->
+    <header class="header-modern">
+        <div class="container">
+            <div class="logo-section">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-motorcycle"></i> Moto Repuestos Pro
+                </a>
+            </div>
+            <nav class="navbar-desktop">
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="#">Catálogo</a></li>
+                    <li><a href="../index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="search-btn" aria-label="Buscar">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+                <div class="menu-icon" onclick="toggleMenu(event)">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal del Catálogo -->
+    <main class="product-catalog-main">
+        <div class="container">
+            <!-- Encabezado de la sección -->
+            <div class="section-header" data-aos="fade-up">
+                <h2>Nuestro Catálogo Completo</h2>
+                <p>Filtra por categoría para encontrar el repuesto perfecto para tu moto.</p>
+            </div>
+
+            <!-- Barra de Búsqueda (Nueva) -->
+            <div class="search-bar-container" data-aos="fade-up" data-aos-delay="150">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="search-input" placeholder="Buscar por nombre de producto...">
+            </div>
+
+            <!-- Filtros de Categorías -->
+            <div id="product-filters" class="product-filters" data-aos="fade-up" data-aos-delay="100">
+                <!-- Los botones de filtro se generarán aquí con JavaScript -->
+            </div>
+
+            <!-- Cuadrícula de Productos -->
+            <div id="product-grid" class="product-grid" data-aos="fade-up" data-aos-delay="200">
+                <!-- Los productos se generarán aquí con JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (Reutilizado) -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Moto Repuestos Pro</h3>
+                    <p>Tu parada obligatoria para repuestos de alta calidad.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/share/16ycZoDTS3/"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/cero_onecero?igsh=MXM0cnZsbThrYzUzeQ=="><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/LeonardoDrr"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="#">Catálogo</a></li>
+                        <li><a href="../index.html#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../politica-privacidad.html">Política de Privacidad</a></li>
+                        <li><a href="../terminos-servicio.html">Términos de Servicio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-envelope"></i> leonardorojas30.10.2003@gmail.com</p>
+                    <p><i class="fab fa-whatsapp"></i> +58 414-632-9982</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Leonardo Daniel Rubio Rojas. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Menú Desplegable (Reutilizado) -->
+    <div class="sidebar-modern" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menú</h3>
+            <button class="close-menu" onclick="toggleMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="sidebar-menu">
+            <a href="../index.html" onclick="toggleMenu()"><i class="fas fa-home"></i> Inicio</a>
+            <a href="#" onclick="toggleMenu()"><i class="fas fa-box-open"></i> Catálogo</a>
+            <a href="../index.html#contacto" onclick="toggleMenu()"><i class="fas fa-envelope"></i> Contacto</a>
+        </nav>
+    </div>
+
+    <!-- AOS Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Script principal -->
+    <script src="script.js"></script> <!-- La ruta ya es correcta, el problema estaba en el contenido del script -->
+</body>
+</html>

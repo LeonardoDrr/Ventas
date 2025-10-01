@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERO ONE CERO</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Fuente Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Moderno -->
+    <header class="header-modern">
+        <div class="container">
+            <div class="logo-section">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-motorcycle"></i> Moto Repuestos Pro
+                </a>
+            </div>
+            <nav class="navbar-desktop">
+                <ul class="nav-menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="procts/productos.html">Catálogo</a></li>
+                    <li><a href="#productos">Destacados</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="search-btn" aria-label="Buscar">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+                <div class="menu-icon" onclick="toggleMenu(event)">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Sección Hero -->
+    <section class="hero-section" id="inicio">
+        <div class="hero-content">
+            <h1 data-aos="fade-up" data-aos-delay="100">Los Mejores Repuestos Para Tu Moto</h1>
+            <p data-aos="fade-up" data-aos-delay="200">Calidad, rendimiento y durabilidad garantizada para llevar tu máquina al siguiente nivel.</p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+                <a href="procts/productos.html" class="btn-primary">Ver Catálogo Completo</a>
+                <a href="#contacto" class="btn-secondary">Contactar</a>
+            </div>
+        </div>
+    </section>
+    <!-- Sección de Categorías de Repuestos -->
+    <section class="catalog-section" id="categorias">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Categorías de Repuestos</h2>
+                <p>Encuentra exactamente lo que necesitas para tu moto.</p>
+            </div>
+            <div class="catalog-grid">
+                <!-- Categoría 1: Motores -->
+                <div class="catalog-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Motores y Componentes</h3>
+                    <p>Pistones, cilindros, bielas y todo para potenciar el corazón de tu máquina.</p>
+                    <div class="card-footer">
+                        <a href="procts/productos.html" class="btn-small">Ver más</a>
+                    </div>
+                </div>
+                <!-- Categoría 2: Frenos -->
+                <div class="catalog-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-icon">
+                        <i class="fas fa-compact-disc"></i>
+                    </div>
+                    <h3>Frenos</h3>
+                    <p>Discos, pastillas, calipers y líquidos para una frenada segura y precisa.</p>
+                    <div class="card-footer">
+                        <a href="procts/productos.html" class="btn-small">Ver más</a>
+                    </div>
+                </div>
+                <!-- Categoría 3: Suspensión -->
+                <div class="catalog-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-icon">
+                        <i class="fas fa-car-battery"></i> <!-- Icono representativo -->
+                    </div>
+                    <h3>Suspensión y Chasis</h3>
+                    <p>Amortiguadores, horquillas y rodamientos para máxima estabilidad.</p>
+                    <div class="card-footer">
+                        <a href="procts/productos.html" class="btn-small">Ver más</a>
+                    </div>
+                </div>
+                <!-- Categoría 4: Eléctricos -->
+                <div class="catalog-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Sistema Eléctrico</h3>
+                    <p>Baterías, faros LED, reguladores y cableado de alto rendimiento.</p>
+                    <div class="card-footer">
+                        <a href="procts/productos.html" class="btn-small">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Sección de Productos Destacados con Carrusel -->
+    <section class="projects-section" id="productos">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Productos Destacados</h2>
+                <p>Nuestra selección de los repuestos más populares y de alta calidad.</p>
+            </div>
+            <div class="project-carousel" data-aos="fade-up">
+                <div class="carousel-inner"></div>
+                <!-- Controles de Navegación -->
+                <div class="carousel-controls">
+                    <button class="prev-btn" aria-label="Proyecto anterior"><i class="fas fa-chevron-left"></i></button>
+                    <button class="next-btn" aria-label="Proyecto siguiente"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <!-- Indicadores de Proyectos -->
+                <div class="carousel-indicators"></div>
+            </div>
+        </div>
+    </section>
+    <section class="contact-section" id="contacto">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Contáctanos</h2>
+                <p>¿Tienes alguna duda o necesitas un repuesto específico? ¡Estamos para ayudarte!</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info" data-aos="fade-right">
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>leonardorojas30.10.2003@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>+58 414-632-9982</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-telegram"></i>
+                        <div>
+                            <h4>Telegram</h4>
+                            <p>@Deathjjoker</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://wa.me/+584146329982" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://t.me/Deathjjoker" target="_blank"><i class="fab fa-telegram"></i></a>
+                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form" data-aos="fade-left">
+                    <h3>Envíanos un Mensaje</h3>
+
+                    <form id="contactForm" action="https://formspree.io/f/xovldnll " method="POST">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Teléfono (opcional)">
+                        </div>
+                        <div class="form-group">
+                            <select id="service" name="service" required>
+                                <option value="">Motivo de consulta</option>
+                                <option value="duda-producto">Duda sobre un producto</option>
+                                <option value="buscar-repuesto">Busco un repuesto</option>
+                                <option value="soporte">Soporte post-venta</option>
+                                <option value="otro">Otro motivo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Escribe tu mensaje aquí..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Mejorado -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Moto Repuestos Pro</h3>
+                    <p>Tu parada obligatoria para repuestos de alta calidad.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/share/16ycZoDTS3/"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/cero_onecero?igsh=MXM0cnZsbThrYzUzeQ=="><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/LeonardoDrr"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="procts/productos.html">Catálogo</a></li>
+                        <li><a href="#productos">Destacados</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+                        <li><a href="terminos-servicio.html">Términos de Servicio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-envelope"></i> leonardorojas30.10.2003@gmail.com</p>
+                    <p><i class="fab fa-whatsapp"></i> +58 414-632-9982</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Leonardo Daniel Rubio Rojas. Todos los derechos reservados.</p>
+                <div class="footer-links">
+                    <a href="politica-privacidad.html">Política de Privacidad</a>
+                    <a href="terminos-servicio.html">Términos de Servicio</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Menú desplegable mejorado -->
+    <div class="sidebar-modern" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menú</h3>
+            <button class="close-menu" onclick="toggleMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="sidebar-menu">
+            <a href="#inicio" onclick="toggleMenu()"><i class="fas fa-home"></i> Inicio</a>
+            <a href="procts/productos.html" onclick="toggleMenu()"><i class="fas fa-box-open"></i> Catálogo</a>
+            <a href="#productos" onclick="toggleMenu()"><i class="fas fa-th-large"></i> Destacados</a>
+            <a href="#contacto" onclick="toggleMenu()"><i class="fas fa-envelope"></i> Contacto</a>
+        </nav>
+        <div class="sidebar-contact">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=leonardorojas30.10.2003@gmail.com&su=Consulta%20de%20Servicios&body=Hola%20Leonardo,%20me%20interesan%20tus%20servicios..." target="_blank" class="sidebar-btn gmail">
+                <i class="fas fa-envelope"></i> Gmail
+            </a>
+            <a href="https://wa.me/+584146329982?text=Hola%20Leonardo,%20me%20interesan%20tus%20servicios..." target="_blank" class="sidebar-btn whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
+    </div>
+    <!-- Botón WhatsApp Flotante -->
+    <a href="https://wa.me/+584146329982?text=Hola%20Leonardo,%20me%20interesan%20tus%20servicios..." target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <!-- Botón Volver Arriba -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- AOS Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Script principal -->
+    <script src="script.js"></script>
+</body>
+</html>
