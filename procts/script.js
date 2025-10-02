@@ -69,7 +69,7 @@ function initializeProductCatalog(products) {
             card.className = 'project-card product-card'; 
             card.innerHTML = `
                 <div class="project-image">
-                    <img src="../${product.image}" alt="${product.title}" onerror="this.onerror=null; this.src='../images/placeholder.jpg';">
+                    <img src="${product.image}" alt="${product.title}" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                     <div class="project-type-badge">${product.category}</div>
                 </div>
                 <div class="project-content">
