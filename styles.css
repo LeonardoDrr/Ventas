@@ -91,6 +91,13 @@ main {
     transform: rotate(-15deg);
 }
 
+.logo span {
+    white-space: nowrap; /* Evita que el texto se divida en dos líneas */
+    overflow: hidden; /* Oculta el texto que se desborda */
+    text-overflow: ellipsis; /* Añade "..." si el texto es muy largo */
+    min-width: 0; /* Permite que el elemento se encoja por debajo de su tamaño de contenido */
+}
+
 .navbar-desktop {
     flex: 2;
 }
@@ -759,11 +766,33 @@ main {
         grid-template-columns: 1fr;
         padding: 2rem;
     }
+
+    .catalog-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .product-grid {
+        /* En tablets, 2 columnas se ven mejor que 3 */
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
     .container {
         padding: 0 1rem;
+    }
+    .logo {
+        font-size: 1.3rem; /* Reducir tamaño del logo en móvil */
+        gap: 8px;
+    }
+    .logo i {
+        font-size: 1.5rem; /* Reducir tamaño del ícono del logo */
+    }
+    .header-actions {
+        gap: 0.5rem; /* Reducir espacio entre botones del header */
+    }
+    .product-catalog-main {
+        padding: 2rem 0; /* Menos padding en móvil */
     }
     .navbar-desktop {
         display: none;
@@ -773,6 +802,10 @@ main {
     }
     .hero-content h1 {
         font-size: 2.5rem;
+    }
+    .hero-buttons {
+        flex-direction: column; /* Apilar botones en móvil */
+        align-items: center;
     }
     .hero-content p {
         font-size: 1.1rem;
@@ -796,5 +829,11 @@ main {
     }
     .footer-social {
         justify-content: center;
+    }
+}
+
+@media (max-width: 380px) {
+    .hero-content h1 {
+        font-size: 2rem; /* Aún más pequeño para pantallas muy estrechas */
     }
 }
