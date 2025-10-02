@@ -2,127 +2,129 @@ document.addEventListener("DOMContentLoaded", function () {
     // Inicializa AOS para las animaciones
     AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
 
-    // Ejecuta la función principal que carga los datos y construye la página
-    main();
-});
+    // --- Funcionalidad del Carrusel de Productos Destacados ---
+    const carouselInner = document.querySelector('.carousel-inner');
+    const indicatorsContainer = document.querySelector('.carousel-indicators');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
 
-/**
- * Carga los productos desde el archivo CSV y los convierte en un array de objetos.
- * @returns {Promise<Array<Object>>} Una promesa que se resuelve con el array de productos.
- */
-async function loadProductsFromCSV() {
-    try {
-        const response = await fetch('productos.csv');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const csvText = await response.text();
-        const lines = csvText.trim().split('\n');
-        const headers = lines[0].split(',').map(h => h.trim());
-        const products = lines.slice(1).map(line => {
-            const values = line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g).map(v => v.replace(/"/g, '').trim());
-            const product = {};
-            headers.forEach((header, index) => {
-                product[header] = values[index];
-            });
-            return product;
-        });
-        return products;
-    } catch (error) {
-        console.error("Error al cargar o procesar el archivo CSV:", error);
-        return [];
-    }
-}
+    // Solo ejecutar si los elementos del carrusel existen
+    if (carouselInner && indicatorsContainer && prevBtn && nextBtn) {
+        let currentIndex = 0;
+        let projects = [];
 
-/**
- * Inicializa la página de catálogo de productos (filtros y cuadrícula).
- * @param {Array<Object>} products - El array de productos a mostrar.
- */
-function initializeProductCatalog(products) {
-    const grid = document.getElementById('product-grid');
-    const filtersContainer = document.getElementById('product-filters');
-    
-    if (!grid || !filtersContainer) return;
+        // Cargar productos desde el CSV
+        fetch('procts/productos.csv')
+            .then(response => response.text())
+            .then(csvText => {
+                const lines = csvText.trim().split('\n');
+                const headers = lines[0].split(',').map(h => h.trim());
+                projects = lines.slice(1).map(line => {
+                    const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/"/g, '').trim());
+                    const project = {};
+                    headers.forEach((header, index) => {
+                        project[header] = values[index];
+                    });
+                    return project;
+                }).filter(p => p.destacado && p.destacado.toLowerCase() === 'si'); // Filtrar por la nueva columna 'destacado'
 
-    const whatsappNumber = '+584146329982';
+                if (projects.length > 0) {
+                    buildCarousel();
+                }
+            })
+            .catch(error => console.error("Error al cargar los productos destacados:", error));
 
-    const uniqueCategories = [...new Set(products.map(p => p.category))].sort();
-    const categories = ['Todos', ...uniqueCategories];
-
-    filtersContainer.innerHTML = categories.map(cat => 
-        `<button class="filter-btn ${cat === 'Todos' ? 'active' : ''}" data-category="${cat}">${cat}</button>`
-    ).join('');
-
-    function displayProducts(filter = 'Todos') {
-        grid.innerHTML = '';
-        const filteredProducts = filter === 'Todos' 
-            ? products 
-            : products.filter(p => p.category === filter);
-
-        if (filteredProducts.length === 0) {
-            grid.innerHTML = '<p>No hay productos en esta categoría.</p>';
-            return;
-        }
-
-        filteredProducts.forEach(product => {
-            const card = document.createElement('div');
-            card.className = 'project-card product-card'; 
-            card.innerHTML = `
-                <div class="project-image">
-                    <img src="../${product.image}" alt="${product.title}">
-                    <div class="project-type-badge">${product.category}</div>
-                </div>
-                <div class="project-content">
-                    <h3>${product.title}</h3>
-                    <p>${product.description}</p>
-                    <div class="product-footer">
-                        <span class="price">${product.price}</span>
-                        <a href="#" class="btn-small btn-whatsapp" data-product-id="${product.id}">
-                            <i class="fab fa-whatsapp"></i> Reservar
-                        </a>
+        function buildCarousel() {
+            carouselInner.innerHTML = projects.map((project, index) => `
+                <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}">
+                    <div class="project-image">
+                        <img src="${project.image}" alt="${project.title}" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+                        <div class="project-type-badge">${project.category}</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>${project.title}</h3>
+                        <p>${project.description}</p>
+                        <div class="product-footer">
+                            <span class="price">${project.price}</span>
+                            <a href="procts/productos.html" class="btn-small">Ver Detalles</a>
+                        </div>
                     </div>
                 </div>
-            `;
-            grid.appendChild(card);
+            `).join('');
+
+            indicatorsContainer.innerHTML = projects.map((_, index) => 
+                `<div class="indicator ${index === 0 ? 'active' : ''}" data-index="${index}"></div>`
+            ).join('');
+
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const offset = -currentIndex * 100;
+            carouselInner.style.transform = `translateX(${offset}%)`;
+
+            document.querySelectorAll('.project-card').forEach(card => card.classList.remove('active'));
+            document.querySelector(`.project-card[data-index="${currentIndex}"]`).classList.add('active');
+
+            document.querySelectorAll('.indicator').forEach(ind => ind.classList.remove('active'));
+            document.querySelector(`.indicator[data-index="${currentIndex}"]`).classList.add('active');
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % projects.length;
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + projects.length) % projects.length;
+            updateCarousel();
+        });
+
+        indicatorsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('indicator')) {
+                currentIndex = parseInt(e.target.dataset.index);
+                updateCarousel();
+            }
         });
     }
 
-    filtersContainer.addEventListener('click', e => {
-        if (e.target.classList.contains('filter-btn')) {
-            filtersContainer.querySelector('.active').classList.remove('active');
-            e.target.classList.add('active');
-            const category = e.target.dataset.category;
-            displayProducts(category);
+    // --- Botón "Volver Arriba" ---
+    const backToTopButton = document.getElementById("backToTop");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
         }
+    };
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+});
 
-    grid.addEventListener('click', e => {
-        const button = e.target.closest('.btn-whatsapp');
-        if (button) {
-            e.preventDefault();
-            const productId = button.dataset.productId;
-            const product = products.find(p => p.id == productId);
-
-            if (product) {
-                const message = `¡Hola! Estoy interesado en el producto: *${product.title}* (Precio: ${product.price}). ¿Podrían darme más información sobre el pago y la entrega?`;
-                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, '_blank');
-            }
-        }
-    });
-
-    displayProducts();
+// --- Funcionalidad del Menú Hamburguesa (Global) ---
+function toggleMenu(event) {
+    event?.stopPropagation();
+    const sidebar = document.getElementById("sidebar");
+    const menuIcon = document.querySelector('.menu-icon');
+    sidebar.classList.toggle("active");
+    menuIcon.classList.toggle("active"); // Para animar el ícono
 }
 
-/**
- * Función principal que se ejecuta al cargar la página.
- */
-async function main() {
-    AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
-    const products = await loadProductsFromCSV();
-    initializeProductCatalog(products);
-}
+document.addEventListener("click", function (event) {
+    const sidebar = document.getElementById("sidebar");
+    const menuIcon = document.querySelector('.menu-icon');
+    if (sidebar.classList.contains("active") && !sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+        sidebar.classList.remove("active");
+        menuIcon.classList.remove("active");
+    }
+});
 
-document.addEventListener("DOMContentLoaded", main);
-// El resto del código para el carrusel, menú, etc., que pertenece a index.html, debería permanecer aquí.
-// Por simplicidad, he eliminado la parte del catálogo que causaba el conflicto.
+window.addEventListener('resize', function () {
+    const sidebar = document.getElementById("sidebar");
+    const menuIcon = document.querySelector('.menu-icon');
+    if (window.innerWidth > 768) {
+        sidebar.classList.remove("active");
+        menuIcon.classList.remove("active");
+    }
+});
