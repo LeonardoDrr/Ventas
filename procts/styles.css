@@ -75,6 +75,42 @@
     gap: 2rem;
 }
 
+.product-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: var(--white);
+    border: 2px solid #e1e8ed;
+    color: var(--secondary-color);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: #f1f8ff;
+    border-color: var(--primary-hover);
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 2rem;
+}
+
 /* --- Variables Globales --- */
 :root {
     --primary-color: #e74c3c; /* Rojo Motocicleta */
@@ -166,6 +202,13 @@ main {
 
 .logo:hover i {
     transform: rotate(-15deg);
+}
+
+.logo span {
+    white-space: nowrap; /* Evita que el texto se divida en dos líneas */
+    overflow: hidden; /* Oculta el texto que se desborda */
+    text-overflow: ellipsis; /* Añade "..." si el texto es muy largo */
+    min-width: 0; /* Permite que el elemento se encoja por debajo de su tamaño de contenido */
 }
 
 .navbar-desktop {
@@ -468,6 +511,20 @@ main {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 600;
+}
+/* Insignia para la cantidad de stock */
+.product-quantity-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(44, 62, 80, 0.8); /* Azul oscuro semi-transparente */
+    color: var(--white);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    backdrop-filter: blur(4px); /* Efecto "frosty" para navegadores compatibles */
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .project-content {
@@ -847,6 +904,16 @@ main {
     .container {
         padding: 0 1rem;
     }
+    .logo {
+        font-size: 1.3rem; /* Reducir tamaño del logo en móvil */
+        gap: 8px;
+    }
+    .logo i {
+        font-size: 1.5rem; /* Reducir tamaño del ícono del logo */
+    }
+    .header-actions {
+        gap: 0.5rem; /* Reducir espacio entre botones del header */
+    }
     .navbar-desktop {
         display: none;
     }
@@ -887,5 +954,11 @@ main {
     }
     .footer-social {
         justify-content: center;
+    }
+}
+
+@media (max-width: 380px) {
+    .hero-content h1 {
+        font-size: 2rem; /* Aún más pequeño para pantallas muy estrechas */
     }
 }
