@@ -36,8 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function buildCarousel() {
             carouselInner.innerHTML = projects.map((project, index) => {
-                // Si la ruta ya incluye 'procts/images/', no la duplicamos
-                let imgSrc = project.image.startsWith('procts/images/') ? project.image : `procts/images/${project.image}`;
+                const imgSrc = `procts/${project.image}`;
                 return `
                     <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}">
                         <div class="project-image">
