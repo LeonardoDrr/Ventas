@@ -35,22 +35,26 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("Error al cargar los productos destacados:", error));
 
         function buildCarousel() {
-            carouselInner.innerHTML = projects.map((project, index) => `
-                <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}">
-                    <div class="project-image">
-                        <img src="${project.image}" alt="${project.title}" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
-                        <div class="project-type-badge">${project.category}</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>${project.title}</h3>
-                        <p>${project.description}</p>
-                        <div class="product-footer">
-                            <span class="price">${project.price}</span>
-                            <a href="procts/productos.html" class="btn-small">Ver Detalles</a>
+            carouselInner.innerHTML = projects.map((project, index) => {
+                // Si la ruta ya incluye 'procts/images/', no la duplicamos
+                let imgSrc = project.image.startsWith('procts/images/') ? project.image : `procts/images/${project.image}`;
+                return `
+                    <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}">
+                        <div class="project-image">
+                            <img src="${imgSrc}" alt="${project.title}" onerror="this.onerror=null; this.src='procts/images/placeholder.jpg';">
+                            <div class="project-type-badge">${project.category}</div>
+                        </div>
+                        <div class="project-content">
+                            <h3>${project.title}</h3>
+                            <p>${project.description}</p>
+                            <div class="product-footer">
+                                <span class="price">${project.price}</span>
+                                <a href="procts/productos.html" class="btn-small">Ver Detalles</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
 
             indicatorsContainer.innerHTML = projects.map((_, index) => 
                 `<div class="indicator ${index === 0 ? 'active' : ''}" data-index="${index}"></div>`
