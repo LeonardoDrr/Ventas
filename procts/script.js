@@ -1,32 +1,10 @@
-// --- Funcionalidad del Menú Hamburguesa (Copiada para autonomía) ---
-window.toggleMenu = function (event) {
-    event?.stopPropagation();
-    const sidebar = document.getElementById("sidebar");
-    const menuIcon = document.querySelector('.menu-icon');
-    sidebar.classList.toggle("active");
-    menuIcon.classList.toggle("active");
-};
+document.addEventListener("DOMContentLoaded", function () {
+    // Inicializa AOS para las animaciones
+    AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
 
-document.addEventListener("click", function (event) {
-    const sidebar = document.getElementById("sidebar");
-    const menuIcon = document.querySelector('.menu-icon');
-    if (sidebar && menuIcon && sidebar.classList.contains("active") &&
-        !sidebar.contains(event.target) &&
-        !menuIcon.contains(event.target)) {
-        sidebar.classList.remove("active");
-        menuIcon.classList.remove("active");
-    }
+    // Ejecuta la función principal que carga los datos y construye la página
+    main();
 });
-
-window.addEventListener('resize', function () {
-    const sidebar = document.getElementById("sidebar");
-    const menuIcon = document.querySelector('.menu-icon');
-    if (window.innerWidth > 768 && sidebar && menuIcon) {
-        sidebar.classList.remove("active");
-        menuIcon.classList.remove("active");
-    }
-});
-
 
 /**
  * Carga los productos desde el archivo CSV y los convierte en un array de objetos.
@@ -34,7 +12,6 @@ window.addEventListener('resize', function () {
  */
 async function loadProductsFromCSV() {
     try {
-        // La ruta debe ser relativa a la página HTML que carga el script.
         const response = await fetch('productos.csv');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -43,11 +20,7 @@ async function loadProductsFromCSV() {
         const lines = csvText.trim().split('\n');
         const headers = lines[0].split(',').map(h => h.trim());
         const products = lines.slice(1).map(line => {
-            // La expresión regular anterior era compleja y fallaba.
-            // Este método es más simple y robusto para este formato de CSV.
-            // Divide la línea por comas, pero maneja las comas dentro de las comillas.
-            const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(v => v.replace(/"/g, '').trim());
-
+            const values = line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g).map(v => v.replace(/"/g, '').trim());
             const product = {};
             headers.forEach((header, index) => {
                 product[header] = values[index];
@@ -68,8 +41,7 @@ async function loadProductsFromCSV() {
 function initializeProductCatalog(products) {
     const grid = document.getElementById('product-grid');
     const filtersContainer = document.getElementById('product-filters');
-    const searchInput = document.getElementById('search-input');
-
+    
     if (!grid || !filtersContainer) return;
 
     const whatsappNumber = '+584146329982';
@@ -81,41 +53,24 @@ function initializeProductCatalog(products) {
         `<button class="filter-btn ${cat === 'Todos' ? 'active' : ''}" data-category="${cat}">${cat}</button>`
     ).join('');
 
-    function displayProducts() {
-        const categoryFilter = filtersContainer.querySelector('.active').dataset.category;
-        const searchTerm = searchInput.value.toLowerCase();
-
+    function displayProducts(filter = 'Todos') {
         grid.innerHTML = '';
-
-        // 1. Filtrar por categoría
-        const categoryFilteredProducts = categoryFilter === 'Todos' 
+        const filteredProducts = filter === 'Todos' 
             ? products 
-            : products.filter(p => p.category === categoryFilter);
-
-        // 2. Filtrar por término de búsqueda
-        const filteredProducts = categoryFilteredProducts.filter(p => 
-            p.title.toLowerCase().includes(searchTerm) || 
-            p.description.toLowerCase().includes(searchTerm)
-        );
+            : products.filter(p => p.category === filter);
 
         if (filteredProducts.length === 0) {
-            grid.innerHTML = '<p class="no-products-message">No se encontraron productos que coincidan con tu búsqueda.</p>';
+            grid.innerHTML = '<p>No hay productos en esta categoría.</p>';
             return;
         }
 
         filteredProducts.forEach(product => {
             const card = document.createElement('div');
-            card.className = 'project-card product-card';
-            // Si product.image tiene un valor, úsalo. Si no, usa el placeholder.
-            const imageUrl = product.image ? product.image : 'images/placeholder.jpg';
+            card.className = 'project-card product-card'; 
             card.innerHTML = `
                 <div class="project-image">
-                    <img src="${imageUrl}" alt="${product.title}" 
-                         onerror="this.onerror=null; this.src='images/placeholder.jpg';">
-                    <!-- Insignia de Categoría (derecha) -->
-                    <div class="project-type-badge">${product.category}</div> 
-                    <!-- Insignia de Cantidad (izquierda) -->
-                    <div class="product-quantity-badge">Stock: ${product.quantity || 0}</div>
+                    <img src="../${product.image}" alt="${product.title}" onerror="this.onerror=null; this.src='../images/placeholder.jpg';">
+                    <div class="project-type-badge">${product.category}</div>
                 </div>
                 <div class="project-content">
                     <h3>${product.title}</h3>
@@ -136,14 +91,11 @@ function initializeProductCatalog(products) {
         if (e.target.classList.contains('filter-btn')) {
             filtersContainer.querySelector('.active').classList.remove('active');
             e.target.classList.add('active');
-            displayProducts(); // Vuelve a dibujar los productos con el nuevo filtro
+            const category = e.target.dataset.category;
+            displayProducts(category);
         }
     });
 
-    // Listener para la barra de búsqueda
-    searchInput.addEventListener('input', displayProducts);
-
-    // Listener para los botones de WhatsApp
     grid.addEventListener('click', e => {
         const button = e.target.closest('.btn-whatsapp');
         if (button) {
@@ -152,22 +104,14 @@ function initializeProductCatalog(products) {
             const product = products.find(p => p.id == productId);
 
             if (product) {
-                // Mensaje pre-escrito mejorado para WhatsApp
-                const message = `¡Hola! Estoy interesado en reservar el siguiente producto:\n\n` +
-                              `*Producto:* ${product.title}\n` +
-                              `*ID de Referencia:* ${product.id}\n` +
-                              `*Precio:* ${product.price}\n\n` +
-                              `Me gustaría reservar [indicar cantidad aquí] unidad(es).\n\n` +
-                              `Por favor, confírmenme la disponibilidad y los pasos a seguir. ¡Gracias!`;
+                const message = `¡Hola! Estoy interesado en el producto: *${product.title}* (Precio: ${product.price}). ¿Podrían darme más información sobre el pago y la entrega?`;
                 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-                
                 window.open(whatsappUrl, '_blank');
             }
         }
     });
 
-    // Carga inicial de productos
-    displayProducts(); 
+    displayProducts();
 }
 
 /**
