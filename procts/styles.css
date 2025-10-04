@@ -1,4 +1,3 @@
-/* --- Barra de Búsqueda --- */
 .search-bar-container {
     position: relative;
     max-width: 600px;
@@ -15,7 +14,7 @@
 
 #search-input {
     width: 100%;
-    padding: 0.8rem 1rem 0.8rem 40px; /* Espacio para el ícono */
+    padding: 0.8rem 1rem 0.8rem 40px;
     border-radius: 50px;
     border: 2px solid #e1e8ed;
     font-size: 1rem;
@@ -28,12 +27,11 @@
     box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
 }
 
-/* Estilo para mensaje de "no productos" */
 .no-products-message {
-    grid-column: 1 / -1; /* Ocupa todo el ancho de la grilla */
+    grid-column: 1 / -1;
     text-align: center;
 }
-/* Estilos específicos para la página de catálogo */
+
 .product-catalog-main {
     padding: 4rem 0;
     flex: 1;
@@ -75,47 +73,10 @@
     gap: 2rem;
 }
 
-.product-filters {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    background: var(--white);
-    border: 2px solid #e1e8ed;
-    color: var(--secondary-color);
-    padding: 0.8rem 1.5rem;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.filter-btn:hover {
-    background: #f1f8ff;
-    border-color: var(--primary-hover);
-}
-
-.filter-btn.active {
-    background: var(--primary-color);
-    color: var(--white);
-    border-color: var(--primary-color);
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 2rem;
-}
-
-/* --- Variables Globales --- */
 :root {
-    --primary-color: #e74c3c; /* Rojo Motocicleta */
+    --primary-color: #e74c3c;
     --primary-hover: #c0392b;
-    --secondary-color: #2c3e50; /* Azul Oscuro/Gris */
+    --secondary-color: #2c3e50;
     --text-color: #34495e;
     --light-gray: #ecf0f1;
     --white: #ffffff;
@@ -123,7 +84,6 @@
     --header-height: 80px;
 }
 
-/* --- Reseteo y Estilos Base --- */
 * {
     margin: 0;
     padding: 0;
@@ -155,7 +115,6 @@ main {
     padding: 0 1.5rem;
 }
 
-/* --- Header Moderno --- */
 .header-modern {
     background: var(--white);
     height: var(--header-height);
@@ -205,10 +164,10 @@ main {
 }
 
 .logo span {
-    white-space: nowrap; /* Evita que el texto se divida en dos líneas */
-    overflow: hidden; /* Oculta el texto que se desborda */
-    text-overflow: ellipsis; /* Añade "..." si el texto es muy largo */
-    min-width: 0; /* Permite que el elemento se encoja por debajo de su tamaño de contenido */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
 }
 
 .navbar-desktop {
@@ -276,7 +235,7 @@ main {
 
 .menu-icon {
     cursor: pointer;
-    display: none; /* Oculto en escritorio */
+    display: none;
     flex-direction: column;
     gap: 5px;
     padding: 10px;
@@ -289,7 +248,6 @@ main {
     transition: all 0.3s ease;
 }
 
-/* --- Hero Section --- */
 .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hero-moto.jpg') no-repeat center center/cover;
     color: var(--white);
@@ -322,7 +280,6 @@ main {
     gap: 1rem;
 }
 
-/* --- Botones --- */
 .btn, .btn-primary, .btn-secondary, .btn-small {
     display: inline-block;
     padding: 0.8rem 2rem;
@@ -371,7 +328,6 @@ main {
     box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
 }
 
-/* --- Secciones Generales --- */
 .section-header {
     text-align: center;
     margin-bottom: 3rem;
@@ -390,7 +346,6 @@ main {
     margin: 0 auto;
 }
 
-/* --- Sección de Catálogo (Categorías en index.html) --- */
 .catalog-section {
     padding: 5rem 0;
     background-color: #f8f9fa;
@@ -451,7 +406,7 @@ main {
     color: var(--secondary-color);
 }
 
-/* --- Sección de Proyectos/Productos (Carrusel) --- */
+/* Carrusel de productos/proyectos */
 .projects-section {
     padding: 5rem 0;
     background-color: var(--white);
@@ -469,14 +424,15 @@ main {
     transition: transform 0.5s ease-in-out;
 }
 
+/* ARREGLO: Los productos ya no se ven transparentes ni pequeños */
 .project-card {
     min-width: 100%;
     background: var(--white);
     transition: opacity 0.5s ease, transform 0.5s ease;
     display: flex;
     flex-direction: column;
-    opacity: 0.5;
-    transform: scale(0.95);
+    opacity: 1;
+    transform: scale(1);
 }
 
 .project-card.active {
@@ -512,18 +468,18 @@ main {
     font-size: 0.8rem;
     font-weight: 600;
 }
-/* Insignia para la cantidad de stock */
+
 .product-quantity-badge {
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background: rgba(44, 62, 80, 0.8); /* Azul oscuro semi-transparente */
+    background: rgba(44, 62, 80, 0.8);
     color: var(--white);
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 600;
-    backdrop-filter: blur(4px); /* Efecto "frosty" para navegadores compatibles */
+    backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
 }
 
@@ -605,7 +561,6 @@ main {
     background: var(--primary-color);
 }
 
-/* --- Sección de Contacto --- */
 .contact-section {
     padding: 5rem 0;
     background-color: #f8f9fa;
@@ -682,7 +637,6 @@ main {
     box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
 }
 
-/* --- Footer --- */
 .footer-modern {
     background: var(--secondary-color);
     color: #bdc3c7;
@@ -761,7 +715,6 @@ main {
     color: var(--white);
 }
 
-/* --- Sidebar (Menú Móvil) --- */
 .sidebar-modern {
     position: fixed;
     top: 0;
@@ -845,7 +798,6 @@ main {
 .sidebar-btn.gmail { background: #db4437; }
 .sidebar-btn.whatsapp { background: #25d366; }
 
-/* --- Utilidades --- */
 .back-to-top {
     display: none;
     position: fixed;
@@ -869,7 +821,6 @@ main {
     transform: translateY(-3px);
 }
 
-/* --- Estilos para páginas legales --- */
 .legal-section {
     padding: 4rem 0;
 }
@@ -887,7 +838,6 @@ main {
     margin-bottom: 1rem;
 }
 
-/* --- Media Queries para Responsividad --- */
 @media (max-width: 992px) {
     .contact-container {
         grid-template-columns: 1fr;
@@ -895,7 +845,6 @@ main {
     }
 
     .product-grid {
-        /* En tablets, 2 columnas se ven mejor que 3 */
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     }
 }
@@ -905,14 +854,14 @@ main {
         padding: 0 1rem;
     }
     .logo {
-        font-size: 1.3rem; /* Reducir tamaño del logo en móvil */
+        font-size: 1.3rem;
         gap: 8px;
     }
     .logo i {
-        font-size: 1.5rem; /* Reducir tamaño del ícono del logo */
+        font-size: 1.5rem;
     }
     .header-actions {
-        gap: 0.5rem; /* Reducir espacio entre botones del header */
+        gap: 0.5rem;
     }
     .navbar-desktop {
         display: none;
@@ -940,13 +889,13 @@ main {
         font-size: 1.3rem;
     }
     .product-catalog-main {
-        padding: 2rem 0; /* Menos padding en móvil */
+        padding: 2rem 0;
     }
     .product-filters {
         margin-bottom: 2rem;
     }
     .product-grid {
-        grid-template-columns: 1fr; /* Una sola columna en móviles */
+        grid-template-columns: 1fr;
     }
     .footer-content {
         grid-template-columns: 1fr;
@@ -959,6 +908,6 @@ main {
 
 @media (max-width: 380px) {
     .hero-content h1 {
-        font-size: 2rem; /* Aún más pequeño para pantallas muy estrechas */
+        font-size: 2rem;
     }
 }
